@@ -18,6 +18,12 @@ public class DataGenerator
 	
 	private ForecastIO generatorFio = null;
 
+	/**
+	 * Construct a DataGenerator object.
+	 * 
+	 * @param latitude  Latitude of the location.
+	 * @param longitude Longitude of the location.
+	 */
 	public DataGenerator(String latitude, String longitude)
 	{			
 		generatorFio = initialize(latitude, longitude);
@@ -32,9 +38,7 @@ public class DataGenerator
 	 * 		   data.
 	 */
 	public ForecastIO initialize(String latitude, String longitude)
-	{		
-		//System.out.println("DataGenerator - initialize()");
-		
+	{			
 		Properties prop = new Properties();
 		InputStream input = null;
 		String propFile = "config.properties";
@@ -48,8 +52,7 @@ public class DataGenerator
 			prop.load(input);
 	 
 			// get the property value and print it out
-			apiKey = prop.getProperty("apiKey");
-			//System.out.println("config.properties apiKey=" + prop.getProperty("apiKey"));				
+			apiKey = prop.getProperty("apiKey");					
 		} 
 		catch (IOException ex) 
 		{
@@ -87,6 +90,9 @@ public class DataGenerator
 	    return fio;
 	}
 	 
+	/**
+	 * Returns the instance's ForecastIO or null if it has not been created. 
+	 */
 	public ForecastIO getForecastIO()
 	{
 		if(generatorFio != null)
@@ -98,19 +104,27 @@ public class DataGenerator
 		return null;
 	}
 	
-	public ForecastIO setLocation(String latitude, String longitude)
+	/**
+	 * Set the ForecastIO's location.
+	 * 
+	 * @param latitude  Latitude of the location.
+	 * @param longitude Longitude of the location.
+	 */
+	public void setLocation(String latitude, String longitude)
 	{
 		if(generatorFio != null)
 		{
-			generatorFio.getForecast(latitude, longitude);
-			
-			return generatorFio;
+			generatorFio.getForecast(latitude, longitude);			
 		}
-		
-		System.out.println("ForecastIO object is null! initialize() first.");
-		return null;		
+		else
+		{
+			System.out.println("ForecastIO object is null! initialize() first.");
+		}				
 	}
 	
+	/**
+	 * Print information about the current location.
+	 */
 	public void printLocation()
 	{
 		if(generatorFio != null)

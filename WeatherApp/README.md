@@ -12,7 +12,7 @@
 
 ### Usage
 - User will need to get an API key from https://developer.forecast.io/ and
- add it to config.properties.
+ add it to WeatherApp/src/main/resources/config.properties. (apiKey field)
 - The Java weather API used was tested on Java 1.7. Thus, this project was also
  tested against Java 1.7.
 - Maven is used for dependencies.
