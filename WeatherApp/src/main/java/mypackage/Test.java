@@ -1,7 +1,5 @@
 package mypackage;
 
-import com.github.dvdme.ForecastIOLib.FIOCurrently;
-import com.github.dvdme.ForecastIOLib.FIODaily;
 import com.github.dvdme.ForecastIOLib.ForecastIO;
 
 /** This class simply uses the DataGenerator to show examples of how to generate
@@ -25,6 +23,11 @@ public class Test {
 		generator.printLocation();
 		generator.printCurrentWeather();		
 		assistant.getRecommendations(fio);
+		
+		// Milwaukee, WI 43.0500° N, 87.9500° W
+		generator.setLocation("43.0500", "-87.9500");
+		generator.printLocation();
+		assistant.getRecommendations(fio);		
 	}   	    	
 
 }

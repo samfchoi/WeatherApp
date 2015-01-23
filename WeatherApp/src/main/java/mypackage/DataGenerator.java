@@ -49,9 +49,7 @@ public class DataGenerator
 			// Load our config file to extract the apiKey. User is expected to
 			// specify their own apiKey in config.properties.
 			input = getClass().getClassLoader().getResourceAsStream(propFile);			
-			prop.load(input);
-	 
-			// get the property value and print it out
+			prop.load(input);			
 			apiKey = prop.getProperty("apiKey");					
 		} 
 		catch (IOException ex) 
@@ -99,13 +97,18 @@ public class DataGenerator
 		{
 			return generatorFio;
 		}
-		
-		System.out.println("ForecastIO object is null! initialize() first.");
-		return null;
+		else
+		{		
+			System.out.println("ForecastIO object is null! initialize() first.");
+			return null;
+		}
 	}
 	
 	/**
 	 * Set the ForecastIO's location.
+	 * 
+	 * Location is already set during initialize(), but this can be used to 
+	 * check weather for a different city while using the same API connection.
 	 * 
 	 * @param latitude  Latitude of the location.
 	 * @param longitude Longitude of the location.
@@ -130,9 +133,9 @@ public class DataGenerator
 		if(generatorFio != null)
 		{			
 			System.out.println("\nPrinting current location information.");
-			System.out.println("Latitude: "+ generatorFio.getLatitude());
-		    System.out.println("Longitude: "+ generatorFio.getLongitude());
-		    System.out.println("Timezone: "+ generatorFio.getTimezone());			
+			System.out.println("Latitude: " + generatorFio.getLatitude());
+		    System.out.println("Longitude: " + generatorFio.getLongitude());
+		    System.out.println("Timezone: " + generatorFio.getTimezone());			
 		}
 		else
 		{
@@ -186,7 +189,7 @@ public class DataGenerator
 	    	daysForecast = maxDays;
 	    }
 	    
-	    //In case there is no daily data available
+	    // In case there is no daily data available
 	    if(daysForecast < 0)
 	    {
 	        System.out.println("No daily data.");

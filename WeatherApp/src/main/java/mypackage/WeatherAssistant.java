@@ -14,7 +14,7 @@ public class WeatherAssistant
 	 *  Based on current weather, get recommendations on clothing and/or 
 	 *  accessories to bring for the day (e.g. umbrella).
 	 */	
-	public static void getRecommendations(ForecastIO fio)	
+	public void getRecommendations(ForecastIO fio)	
 	{
 		// Set to US units to ensure that our calculations and recommendations
 		// are correct.
@@ -47,11 +47,21 @@ public class WeatherAssistant
 			System.out.println("Warm weather, no jacket needed!");
 		}
 		
-		// Recommendations for accessories
-		if(precipIntensity > 0)
+		// Recommendations for accessories.
+		// precipIntensity is returned in in/hr. .1 is moderate rain while .4 is
+		// heavy rain.
+		if(precipIntensity > .4)
 		{
-			System.out.println("Umbrella");
+			System.out.println("Heavy rain - Umbrella and rain boots");
 		}				
+		else if(precipIntensity > .1)
+		{
+			System.out.println("Moderate rain - Umbrella and rain boots");
+		}	
+		else if(precipIntensity > 0)
+		{
+			System.out.println("Light rain - May need an umbrella");
+		}	
 	}
 
 }
