@@ -16,14 +16,14 @@ public class Test {
 		WeatherAssistant assistant = new WeatherAssistant();
 		generator.printLocation();
 		ForecastIO fio = generator.getForecastIO();				
-		generator.printCurrentWeather(fio);
-		//generator.printForecastWeather(fio, 1);	
+		generator.printCurrentWeather();
+		//generator.printForecastWeather(2);	
 		assistant.getRecommendations(fio);
 				
 		// Seattle, WA, USA 47.6097° N, 122.3331° W
 		generator.setLocation("47.6097", "-122.3331");
 		generator.printLocation();
-		generator.printCurrentWeather(fio);		
+		generator.printCurrentWeather();		
 		assistant.getRecommendations(fio);
 	}   	    	
 

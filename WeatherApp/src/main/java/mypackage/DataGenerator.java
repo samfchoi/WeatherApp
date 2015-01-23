@@ -141,16 +141,14 @@ public class DataGenerator
 	}
 	
 	/**
-	 * Print out data for the current weather conditions.
-	 * 
-	 * @param fio The ForecastIO object for the DataGenerator instance.
+	 * Print out data for the current weather conditions. 
 	 */
-	public void printCurrentWeather(ForecastIO fio)
+	public void printCurrentWeather()
 	{
 		System.out.println("\nCurrent Weather\n");
 		
 	    // FIOCurrently object contains data for current weather conditions
-	    FIOCurrently currently = new FIOCurrently(fio);	  	    
+	    FIOCurrently currently = new FIOCurrently(generatorFio);	  	    
 	    String [] currentWeather  = currently.get().getFieldsArray();
 	    
 	    // Print all key value pairs for current weather data
@@ -164,12 +162,11 @@ public class DataGenerator
 	
 	/**
 	 * Print out data for the forecast weather conditions.
-	 * 
-	 * @param fio     The ForecastIO object for the DataGenerator instance.
+	 *	 
 	 * @param maxDays Maximum number of days to retrieve for the forecast. The
 	 * 				  underlying API supports a maximum of 8 days.
 	 */
-	public void printForecastWeather(ForecastIO fio, int maxDays)
+	public void printForecastWeather(int maxDays)
 	{	
 		if((maxDays < 1) || (maxDays > 8))
 		{
@@ -178,7 +175,7 @@ public class DataGenerator
 			return;
 		}
 		
-	    FIODaily daily = new FIODaily(fio);
+	    FIODaily daily = new FIODaily(generatorFio);
 	    int daysForecast = daily.days();
 	    
 	    // The number of days forecast should be the lesser of the maxDays 
@@ -204,11 +201,11 @@ public class DataGenerator
 	    // Print forecast weather. Print each field, for each day.
 	    for(int i = 0; i < daysForecast; i++)
 	    {
-	        String [] h = daily.getDay(i).getFieldsArray();
-	        System.out.println("Day #"+(i+1));
-	        for(int j = 0; j < h.length; j++)
+	        String [] currentFields = daily.getDay(i).getFieldsArray();
+	        System.out.println("Day #"+(i + 1));
+	        for(int j = 0; j < currentFields.length; j++)
 	        {
-	            System.out.println(h[j]+": "+daily.getDay(i).getByKey(h[j]));
+	            System.out.println(currentFields[j]+": "+daily.getDay(i).getByKey(currentFields[j]));
 	        }
 	        System.out.println("\n");
 	    }	    
